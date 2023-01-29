@@ -36,3 +36,32 @@
     transform: rotate(360deg);
   }
 }
+
+.hidden {
+  display: none;
+}
+
+/* Practice plans */
+
+.alreadyAdded {
+  color: gray;
+  /*TODO disable Add buttons and show visually that item is already added*/
+}
+
+.alreadyAdded > button {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.planItemsDiv {
+  line-height: 1.5em;
+  display: grid;
+  grid-template-columns: [];
+}
+
+.planItemsDiv ul {
+  list-style: none;
+}
+
+.addExerciseDiv {
+}

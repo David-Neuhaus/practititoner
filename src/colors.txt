@@ -1,0 +1,6 @@
+Add, Approve, confirm: forestgreen
+remove, accent: coral
+edit, other buttons: rgb(0, 128, 255);
+
+Text: ?
+grays: lightgray, gray, #676767

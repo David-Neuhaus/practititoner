@@ -1,0 +1,72 @@
+.addExerciseDiv h2 {
+  padding: 0;
+  margin-bottom: 0.3em;
+}
+
+.alreadyAdded {
+  color: gray;
+  /*TODO disable Add buttons and show visually that item is already added*/
+}
+
+.alreadyAdded > addButton {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.exerciseList {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  line-height: 2em;
+}
+
+.subList {
+  list-style: none;
+}
+
+.listItemTitleBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addButton {
+  margin-right: 1em;
+}
+
+.innerAddButton {
+  font-size: 11px;
+}
+
+.exerciseName {
+  flex-grow: 2;
+  text-align: left;
+}
+
+@media (hover: hover) {
+  .subItems:hover,
+  .exerciseName:hover {
+    cursor: pointer;
+    background: none;
+  }
+}
+
+.subItems {
+  background: none;
+  border: none;
+  color: #676767;
+  text-align: right;
+}
+
+.subItems:active {
+  cursor: pointer;
+  background: none;
+}
+
+.subItems svg {
+  margin-left: 0.3em;
+}
+
+.showSubItemsBox {
+  display: inline;
+}

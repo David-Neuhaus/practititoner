@@ -15,7 +15,13 @@ function Home(props: Props) {
   ]);
 
   function addPlan(event: FormEvent) {
-    setPracticePlans(practicePlans.concat({ name: addPlanTitle, items: [""] }));
+    setPracticePlans(
+      practicePlans.concat({
+        name: addPlanTitle,
+        items: [""],
+        id: addPlanTitle,
+      })
+    );
     event.preventDefault();
   }
 

@@ -1,0 +1,49 @@
+.addButton,
+.removeButton {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 100%;
+  background: none;
+  cursor: pointer;
+
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@media (hover: hover) {
+  /* supports hover */
+  .addButton:hover {
+    background: lightgreen;
+  }
+
+  .removeButton:hover {
+    background: lightpink;
+  }
+}
+
+.addButton:active {
+  background: lightgreen;
+}
+
+.removeButton:active {
+  background: lightpink;
+}
+
+.addButton {
+  border-color: forestgreen;
+  color: forestgreen;
+}
+
+.removeButton {
+  border-color: coral;
+  color: coral;
+}
+
+.addButton svg,
+.removeButton svg {
+  display: block;
+}

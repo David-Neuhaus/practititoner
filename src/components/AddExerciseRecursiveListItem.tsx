@@ -41,7 +41,7 @@ function AddExerciseRecursiveListItem(props: Props) {
             id={props.item.name}
           >
             {`${props.item.subItems.length} item${
-              props.item.subItems.length && "s"
+              props.item.subItems.length > 1 ? "s" : ""
             }`}
             {showItems ? (
               <FontAwesomeIcon icon={solid("chevron-up")} />

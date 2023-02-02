@@ -159,7 +159,10 @@ function Plan() {
       </div>
       <div className={styles.startLinkContainer}>
         <Link to="./play" className={styles.startLink}>
-          <div>Start</div>
+          <div>
+            <FontAwesomeIcon icon={solid("play")} />
+            Start
+          </div>
         </Link>
       </div>
     </div>

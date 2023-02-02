@@ -117,13 +117,14 @@
   margin-left: 1em;
 }
 
-.startLink div {
-  display: block;
-  border: 2px solid forestgreen;
-  border-radius: 4px;
-  width: fit-content;
-  padding: 0.4em 2em;
-  font-size: 20px;
+.startLinkContainer {
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  margin-top: 3em;
+  margin-bottom: 2em;
 }
 
 .startLink,
@@ -136,12 +137,15 @@
   color: forestgreen;
 }
 
-.startLinkContainer {
-  height: auto;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-content: center;
-  margin-top: 3em;
-  margin-bottom: 2em;
+.startLink div {
+  display: block;
+  border: 2px solid forestgreen;
+  border-radius: 4px;
+  width: fit-content;
+  padding: 0.4em 2em;
+  font-size: 20px;
+}
+
+.startLink svg {
+  padding-right: 0.5em;
 }

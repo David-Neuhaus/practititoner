@@ -18,11 +18,24 @@ type CategoryProps = {
   id: string;
 };
 
-export function PracticePlanItemCategory(props: CategoryProps) {
-  // TODO Category breadcrumbs
+function CategoryFullPath(props: CategoryProps) {
   const category = useExerciseById(props.id);
+  if (category?.parentId)
+    return (
+      <>
+        <CategoryFullPath id={category.parentId} /> {" > "}
+        {category?.name}
+      </>
+    );
+  else return <>{category?.name}</>;
+}
 
-  return <span className={styles.itemCategory}>{category?.name}</span>;
+export function PracticePlanItemCategory(props: CategoryProps) {
+  return (
+    <span className={styles.itemCategory}>
+      <CategoryFullPath {...props} />
+    </span>
+  );
 }
 
 function PracticePlanItem(props: Props) {

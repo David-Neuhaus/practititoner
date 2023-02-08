@@ -64,6 +64,7 @@ function AddExerciseRecursiveListItem(props: Props) {
                 addToPracticePlan={props.addToPracticePlan}
                 inPlan={props.inPlan}
                 item={ex}
+                key={ex.id}
               />
             );
           })}

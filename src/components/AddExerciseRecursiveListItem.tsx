@@ -1,15 +1,15 @@
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import { Exercise } from "../sites/Plan";
+import { ExerciseType, PlanItemType } from "../infra/PlanAPI";
 
 import styles from "./AddExerciseList.module.css";
 import AddRemoveButton from "./AddRemoveButton";
 
 type Props = {
-  item: Exercise;
-  addToPracticePlan: (ex: Exercise) => any;
-  inPlan: Exercise[];
+  item: ExerciseType;
+  addToPracticePlan: (ex: PlanItemType) => any;
+  inPlan: PlanItemType[];
   className?: string;
 };
 
@@ -19,7 +19,7 @@ function AddExerciseRecursiveListItem(props: Props) {
   return (
     <li
       className={`${
-        props.inPlan.some((e) => e.id === props.item.id)
+        props.inPlan.some((e) => e.exerciseId === props.item.id)
           ? `${styles.alreadyAdded}`
           : ""
       }`}
@@ -28,7 +28,12 @@ function AddExerciseRecursiveListItem(props: Props) {
       <div className={styles.listItemTitleBox}>
         <AddRemoveButton
           type="add"
-          callbackFn={() => props.addToPracticePlan(props.item)}
+          callbackFn={() =>
+            props.addToPracticePlan({
+              exerciseId: props.item.id,
+              // TODO maybe possible to already add times/how many of a category etc?
+            })
+          }
           className={styles.addButton}
         />
         <label className={styles.exerciseName} htmlFor={props.item.name}>

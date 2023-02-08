@@ -1,0 +1,158 @@
+.planHeader {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.editPlanNameButton {
+  padding-left: 0.5rem;
+  background: none;
+  border: none;
+  opacity: 0.6;
+}
+
+.editPlanNameButton:active {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  /* supports hover */
+  .editPlanItem:hover {
+    opacity: 1;
+  }
+  .editPlanNameButton:hover {
+    opacity: 1;
+  }
+}
+
+.editPlanItem:active {
+  opacity: 1;
+}
+
+.planItemsHeader {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editPlanButton {
+  font-size: medium;
+}
+
+.planItemsList {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.planItem {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin-top: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+  background-color: white;
+}
+
+.planItem:last-child {
+  border-bottom: none;
+}
+
+.removePlanItem {
+  width: 2em;
+  height: 2em;
+  margin-right: 1em;
+}
+
+.planItemInnerBox {
+  flex-grow: 2;
+  display: grid;
+  grid-template-columns: [first] max-content [second] auto [end];
+  grid-template-rows: [upper] 14px [lower] 18px [end];
+}
+
+.itemCategory {
+  grid-column: first / span 1;
+  grid-row: upper / span 1;
+  font-size: 10px;
+}
+
+.itemDuration {
+  grid-column: second / span 1;
+  grid-row: upper / span 1;
+  font-size: 10px;
+  text-align: right;
+}
+
+.itemDuration svg {
+  margin-right: 0.5em;
+}
+
+.itemName {
+  grid-column: first / span 1;
+  grid-row: lower / span 1;
+}
+
+.itemAmount {
+  grid-column: second / span 1;
+  grid-row: lower / span 1;
+  text-align: right;
+  color: #676767;
+}
+
+.editPlanItem {
+  border: none;
+  width: 2em;
+  height: 2em;
+  background: none;
+  cursor: pointer;
+  color: coral;
+  opacity: 0.6;
+  margin-left: 1em;
+}
+
+.editPlanItem:active {
+  opacity: 1;
+}
+
+.movePlanItem {
+  border: none;
+  margin-left: 1em;
+}
+
+.startLinkContainer {
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+
+.startLink,
+.startLink:hover,
+.startLink:link,
+.startLink:visited,
+.startLink:active {
+  text-decoration: none;
+  font-weight: bold;
+  color: forestgreen;
+}
+
+.startLink div {
+  display: block;
+  border: 2px solid forestgreen;
+  border-radius: 4px;
+  width: fit-content;
+  padding: 0.4em 2em;
+  font-size: 20px;
+}
+
+.startLink svg {
+  padding-right: 0.5em;
+}

@@ -1,27 +1,32 @@
-import React, { FormEvent, useState } from "react";
-import PracticePlanList, { practicePlan } from "../components/PracticePlanList";
+import React, { FormEvent, useContext, useState } from "react";
+import PracticePlanList from "../components/PracticePlanList";
+import { AppStateContext } from "../infra/AppStateContext";
+import { addPlan } from "../infra/PlanAPI";
 
 type Props = {};
 
 function Home(props: Props) {
   const [showAddForm, setShowAddForm] = useState(false);
   const [addPlanTitle, setAddPlanTitle] = useState("");
-  const [practicePlans, setPracticePlans] = useState<practicePlan[]>([
-    {
-      id: "1",
-      name: "jaci is cool",
-      items: [""],
-    },
-  ]);
+  const { plans, dispatch } = useContext(AppStateContext);
 
-  function addPlan(event: FormEvent) {
-    setPracticePlans(
-      practicePlans.concat({
-        name: addPlanTitle,
-        items: [""],
-        id: addPlanTitle,
-      })
-    );
+  function handleAdd(event: FormEvent) {
+    addPlan({
+      name: addPlanTitle,
+      items: [],
+    }).then((response) => {
+      if (response.success && response.id !== undefined)
+        dispatch({
+          type: "addPlan",
+          payload: {
+            plan: {
+              id: response.id,
+              name: addPlanTitle,
+              items: [],
+            },
+          },
+        });
+    });
     event.preventDefault();
   }
 
@@ -29,10 +34,10 @@ function Home(props: Props) {
     <div className="page">
       <h1>PracTITIoner</h1>
       <h2>Your practice plans</h2>
-      <PracticePlanList plans={practicePlans} />
+      <PracticePlanList plans={plans} />
       <button onClick={() => setShowAddForm(true)}>Create plan</button>
       {showAddForm && (
-        <form className="addPlanForm" onSubmit={addPlan}>
+        <form className="addPlanForm" onSubmit={handleAdd}>
           <input
             type="text"
             name="title"

@@ -1,14 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-export type practicePlan = {
-  id: string;
-  name: string;
-  items: string[];
-};
+import { PlanType } from "../infra/PlanAPI";
 
 type Props = {
-  plans: practicePlan[];
+  plans: PlanType[];
 };
 
 function PracticePlanList(props: Props) {

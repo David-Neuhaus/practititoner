@@ -1,9 +1,7 @@
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Http2ServerRequest } from "http2";
 import React, { FormEvent, useContext, useRef, useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { flushSync } from "react-dom";
 import { AppStateContext } from "../infra/AppStateContext";
 import { PlanItemType, setPlanItems, setPlanName } from "../infra/PlanAPI";
 import { usePlanById } from "../infra/StateHooks";

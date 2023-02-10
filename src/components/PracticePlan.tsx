@@ -224,8 +224,6 @@ function PracticePlan(props: Props) {
           />
         )}
       </div>
-
-      <div>{plan.name}</div>
     </div>
   );
 }

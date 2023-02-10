@@ -1,9 +1,11 @@
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext, useState } from "react";
+import { Http2ServerRequest } from "http2";
+import React, { FormEvent, useContext, useRef, useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { flushSync } from "react-dom";
 import { AppStateContext } from "../infra/AppStateContext";
-import { PlanItemType, setPlanItems } from "../infra/PlanAPI";
+import { PlanItemType, setPlanItems, setPlanName } from "../infra/PlanAPI";
 import { usePlanById } from "../infra/StateHooks";
 import AddExerciseList from "./AddExerciseList";
 
@@ -28,11 +30,67 @@ const reorder = (
 
 function PracticePlan(props: Props) {
   const [showAddForm, setShowAddForm] = useState(false);
+  const [editingPlan, setEditingPlan] = useState(false);
+  const planNameEl = useRef<HTMLHeadingElement>(null);
   const plan = usePlanById(props.planId);
   const { dispatch } = useContext(AppStateContext);
 
   if (!plan) {
     return <p>Plan not found.</p>; // TODO Proper error handling
+  }
+
+  function handleEditPlanName() {
+    if (!planNameEl.current) {
+      return;
+    }
+
+    if (!editingPlan) {
+      // Start to edit the plan
+
+      setEditingPlan(true);
+      planNameEl.current.contentEditable = "true";
+      planNameEl.current.focus();
+
+      // Move cursor to the right
+      const range = document.createRange();
+      const sel = window.getSelection();
+
+      range.setStart(planNameEl.current.childNodes[0], plan?.name.length ?? 0);
+      range.collapse(true);
+
+      sel?.removeAllRanges();
+      sel?.addRange(range);
+    } else {
+      // Stop editing plan and save
+
+      planNameEl.current.contentEditable = "false";
+      setEditingPlan(false);
+      plan &&
+        setPlanName(plan.id, planNameEl.current.innerText).then((response) => {
+          if (response.success) {
+            dispatch({
+              type: "setPlanName",
+              payload: {
+                planId: plan.id,
+                name: (planNameEl.current as any).innerText, // should be set ?!
+              },
+            });
+
+            // TODO Error handling
+          }
+        });
+    }
+  }
+
+  function handlePlanNameChangeEnter(event: FormEvent) {
+    // stop editing on newline enter
+    event.preventDefault();
+    (event.target as HTMLHeadingElement).innerText = (
+      event.target as HTMLHeadingElement
+    ).innerText.replace(/(\r\n|\n|\r)/gm, "");
+    (event.target as HTMLHeadingElement).blur();
+
+    handleEditPlanName();
   }
 
   function addItemToPlan(item: PlanItemType) {
@@ -71,8 +129,20 @@ function PracticePlan(props: Props) {
   return (
     <div>
       <header className={styles.planHeader}>
-        <h1 className={styles.planTitle}>{plan.name}</h1>
-        <button className={styles.editPlanNameButton}>
+        <h1
+          className={styles.planTitle}
+          onBlur={handleEditPlanName}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") handlePlanNameChangeEnter(event);
+          }}
+          ref={planNameEl}
+        >
+          {plan.name}
+        </h1>
+        <button
+          className={styles.editPlanNameButton}
+          onClick={handleEditPlanName}
+        >
           <FontAwesomeIcon icon={solid("pen")} fixedWidth size="lg" />
         </button>
       </header>
@@ -154,6 +224,8 @@ function PracticePlan(props: Props) {
           />
         )}
       </div>
+
+      <div>{plan.name}</div>
     </div>
   );
 }

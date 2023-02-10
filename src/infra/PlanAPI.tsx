@@ -50,6 +50,15 @@ export async function setPlanItems(
   return { success: true };
 }
 
+export async function setPlanName(
+  planId: string,
+  name: string
+): Promise<{ success: boolean }> {
+  // TODO call API
+
+  return { success: true };
+}
+
 export async function fetchExercises(): Promise<ExerciseType[]> {
   return [];
 }

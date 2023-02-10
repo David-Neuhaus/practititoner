@@ -12,6 +12,10 @@ type PayloadType = {
   removePlan: {
     id: string;
   };
+  setPlanName: {
+    planId: string;
+    name: string;
+  };
   setPlans: {
     plans: PlanType[];
   };
@@ -68,6 +72,14 @@ export const Reducers: ReducerType = {
     return {
       ...prev,
       exercises: [...args.exercises],
+    };
+  },
+  setPlanName: (prev, args) => {
+    return {
+      ...prev,
+      plans: prev.plans.map((plan) =>
+        plan.id === args.planId ? { ...plan, name: args.name } : plan
+      ),
     };
   },
 };

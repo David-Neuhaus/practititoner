@@ -80,13 +80,16 @@ function PracticePlan(props: Props) {
     }
   }
 
-  function handlePlanNameChangeEnter(event: FormEvent) {
+  function handlePlanNameChangeEnter(
+    event: React.KeyboardEvent<HTMLHeadingElement>
+  ) {
     // stop editing on newline enter
     event.preventDefault();
-    (event.target as HTMLHeadingElement).innerText = (
-      event.target as HTMLHeadingElement
-    ).innerText.replace(/(\r\n|\n|\r)/gm, "");
-    (event.target as HTMLHeadingElement).blur();
+    event.currentTarget.innerText = event.currentTarget.innerText.replace(
+      /(\r\n|\n|\r)/gm,
+      ""
+    );
+    event.currentTarget.blur();
 
     handleEditPlanName();
   }

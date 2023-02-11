@@ -134,7 +134,12 @@ function PracticePlan(props: Props) {
           className={styles.planTitle}
           onBlur={handleEditPlanName}
           onKeyDown={(event) => {
-            if (event.key === "Enter") handlePlanNameChangeEnter(event);
+            if (
+              event.key === "Enter" ||
+              event.key === "Escape" ||
+              event.key === "Esc"
+            )
+              handlePlanNameChangeEnter(event);
           }}
           ref={planNameEl}
         >

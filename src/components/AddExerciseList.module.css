@@ -8,7 +8,7 @@
   /*TODO disable Add buttons and show visually that item is already added*/
 }
 
-.alreadyAdded > addButton {
+.alreadyAdded > .listItemTitleBox > .addButton {
   pointer-events: none;
   opacity: 0.6;
 }
@@ -17,7 +17,11 @@
   list-style: none;
   margin-left: 0;
   padding-left: 0;
-  line-height: 2em;
+}
+
+.exerciseList li {
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
 }
 
 .subList {
@@ -39,7 +43,7 @@
 }
 
 .exerciseName {
-  flex-grow: 2;
+  flex: 1;
   text-align: left;
 }
 
@@ -52,10 +56,16 @@
 }
 
 .subItems {
+  height: 100%;
+  width: max-content;
+  padding: 0;
   background: none;
   border: none;
   color: #676767;
   text-align: right;
+  display: flex;
+  align-items: flex-start;
+  flex-flow: row;
 }
 
 .subItems:active {
@@ -64,7 +74,7 @@
 }
 
 .subItems svg {
-  margin-left: 0.3em;
+  margin-left: 0.5em;
 }
 
 .showSubItemsBox {

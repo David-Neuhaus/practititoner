@@ -104,7 +104,7 @@ function PracticePlan(props: Props) {
               planId: plan.id,
               items: plan.items.concat(item),
             },
-          });
+          }); // TODO Error Handling
         }
       });
   }
@@ -122,7 +122,7 @@ function PracticePlan(props: Props) {
               planId: plan.id,
               items: plan.items.filter((i) => i.exerciseId !== itemId),
             },
-          });
+          }); // TODO Error Handling
         }
       });
   }

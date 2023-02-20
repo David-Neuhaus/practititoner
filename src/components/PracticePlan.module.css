@@ -47,8 +47,8 @@
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   margin-top: 0;
-  border-bottom: 1px solid lightgray;
-  background-color: white;
+  border-bottom: 1px solid var(--light-gray);
+  background-color: var(--bg-color);
 }
 
 .planItem:last-child {
@@ -161,7 +161,7 @@
   height: 2em;
   background: none;
   cursor: pointer;
-  color: coral;
+  color: var(--alert-color);
   opacity: 0.6;
   margin-left: 1em;
 }
@@ -177,7 +177,7 @@
   height: 2em;
   background: none;
   cursor: pointer;
-  color: forestgreen;
+  color: var(--approve-color);
   opacity: 0.6;
   margin-left: 1em;
 }
@@ -209,12 +209,12 @@
 .startLink:active {
   text-decoration: none;
   font-weight: bold;
-  color: forestgreen;
+  color: var(--approve-color);
 }
 
 .startLink div {
   display: block;
-  border: 2px solid forestgreen;
+  border: 2px solid var(--approve-color);
   border-radius: 4px;
   width: fit-content;
   padding: 0.4em 2em;

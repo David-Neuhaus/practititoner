@@ -17,30 +17,30 @@
 @media (hover: hover) {
   /* supports hover */
   .addButton:hover {
-    background: lightgreen;
+    background: var(--approve-color-hover);
   }
 
   .removeButton:hover {
-    background: lightpink;
+    background: var(--alert-color-hover);
   }
 }
 
 .addButton:active {
-  background: lightgreen;
+  background: var(--approve-color-hover);
 }
 
 .removeButton:active {
-  background: lightpink;
+  background: var(--alert-color-hover);
 }
 
 .addButton {
-  border-color: forestgreen;
-  color: forestgreen;
+  border-color: var(--approve-color);
+  color: var(--approve-color);
 }
 
 .removeButton {
-  border-color: coral;
-  color: coral;
+  border-color: var(--alert-color);
+  color: var(--alert-color);
 }
 
 .addButton svg,

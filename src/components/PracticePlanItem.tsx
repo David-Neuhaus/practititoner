@@ -13,6 +13,8 @@ type Props = {
   index: number;
   removeItemFromPlan: (itemId: string) => any;
   showAddForm: boolean;
+  editingItem: boolean | undefined;
+  setEditingItem: (state: boolean) => any;
 };
 
 type CategoryProps = {
@@ -40,8 +42,9 @@ export function PracticePlanItemCategory(props: CategoryProps) {
 }
 
 function PracticePlanItem(props: Props) {
+  const editingItem = props.editingItem;
+  const setEditingItem = props.setEditingItem;
   const item = useExerciseById(props.planItem.exerciseId);
-  const [editingItem, setEditingItem] = useState(false);
   const [amount, setAmount] = useState(props.planItem.amount);
   const [duration, setDuration] = useState(props.planItem.duration);
 
@@ -166,7 +169,10 @@ function PracticePlanItem(props: Props) {
                       className={styles.editAmountInput}
                       defaultValue={amount}
                       onChange={(e) =>
-                        handleChangeAmount(Number(e.target.value))
+                        handleChangeAmount(parseInt(e.target.value))
+                      }
+                      onBlur={(e) =>
+                        handleChangeAmount(parseInt(e.target.value))
                       }
                     />
                     <span className={styles.amountUnit}>ex./movts</span>
@@ -186,7 +192,10 @@ function PracticePlanItem(props: Props) {
                   id={props.planItem.exerciseId.concat("editTimer")}
                   className={styles.editTimerInput}
                   defaultValue={duration}
-                  onChange={(e) => handleChangeDuration(Number(e.target.value))}
+                  onChange={(e) =>
+                    handleChangeDuration(parseInt(e.target.value))
+                  }
+                  onBlur={(e) => handleChangeDuration(parseInt(e.target.value))}
                 />
                 <span className={styles.timerUnit}>min</span>
                 <input type="submit" className="hidden" />

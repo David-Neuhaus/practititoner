@@ -31,6 +31,9 @@ function PracticePlan(props: Props) {
   const [editingPlan, setEditingPlan] = useState(false);
   const planNameEl = useRef<HTMLHeadingElement>(null);
   const plan = usePlanById(props.planId);
+  const [editingItem, setEditingItem] = useState<{ [index: string]: boolean }>(
+    {}
+  );
   const { dispatch } = useContext(AppStateContext);
 
   if (!plan) {
@@ -157,7 +160,10 @@ function PracticePlan(props: Props) {
           <h2>Plan</h2>
           <button
             className={styles.editPlanButton}
-            onClick={() => setShowAddForm(!showAddForm)}
+            onClick={() => {
+              setShowAddForm(!showAddForm);
+              setEditingItem({});
+            }}
           >
             {showAddForm ? (
               <span>
@@ -212,6 +218,13 @@ function PracticePlan(props: Props) {
                       planItem={item}
                       removeItemFromPlan={removeItemFromPlan}
                       showAddForm={showAddForm}
+                      editingItem={editingItem[item.exerciseId]}
+                      setEditingItem={(newVal) =>
+                        setEditingItem({
+                          ...editingItem,
+                          [item.exerciseId]: newVal,
+                        })
+                      }
                       key={item.exerciseId}
                     ></PracticePlanItem>
                   );

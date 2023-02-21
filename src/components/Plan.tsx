@@ -7,8 +7,8 @@ import { PlanItemType, setPlanItems, setPlanName } from "../infra/PlanAPI";
 import { usePlanById } from "../infra/StateHooks";
 import AddExerciseList from "./AddExerciseList";
 
-import styles from "./PracticePlan.module.css";
-import PracticePlanItem from "./PracticePlanItem";
+import styles from "./Plan.module.css";
+import PracticePlanItem from "./PlanItem";
 
 type Props = {
   planId: string;

@@ -6,7 +6,7 @@ import { PlanItemType } from "../infra/PlanAPI";
 import { useExerciseById } from "../infra/StateHooks";
 import AddRemoveButton from "./AddRemoveButton";
 
-import styles from "./PracticePlan.module.css";
+import styles from "./Plan.module.css";
 
 type Props = {
   planItem: PlanItemType;

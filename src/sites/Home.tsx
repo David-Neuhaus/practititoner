@@ -1,5 +1,5 @@
 import React, { FormEvent, useContext, useState } from "react";
-import PracticePlanList from "../components/PracticePlanList";
+import PracticePlanList from "../components/PlanList";
 import { AppStateContext } from "../infra/AppStateContext";
 import { addPlan } from "../infra/PlanAPI";
 

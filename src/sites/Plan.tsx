@@ -2,7 +2,7 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useParams } from "react-router-dom";
 
-import PracticePlan from "../components/PracticePlan";
+import PracticePlan from "../components/Plan";
 
 import styles from "./Plan.module.css";
 

@@ -6,9 +6,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import App from "./App";
-import Home from "./sites/Home";
-import Plan from "./sites/Plan";
-import Practice from "./sites/Practice";
+import HomePage from "./sites/HomePage";
+import PlanPage from "./sites/PlanPage";
+import PracticePage from "./sites/PracticePage";
 
 function AppRouter() {
   return (
@@ -16,9 +16,9 @@ function AppRouter() {
       router={createBrowserRouter(
         createRoutesFromElements(
           <Route path="/" element={<App />}>
-            <Route index element={<Home />} />
-            <Route path="plans/:planId" element={<Plan />} />
-            <Route path="plans/:planId/play" element={<Practice />} />
+            <Route index element={<HomePage />} />
+            <Route path="plans/:planId" element={<PlanPage />} />
+            <Route path="plans/:planId/play" element={<PracticePage />} />
           </Route>
         )
       )}

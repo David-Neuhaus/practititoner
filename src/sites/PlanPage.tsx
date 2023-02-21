@@ -4,13 +4,13 @@ import { Link, useParams } from "react-router-dom";
 
 import PracticePlan from "../components/Plan";
 
-import styles from "./Plan.module.css";
+import styles from "./PlanPage.module.css";
 
 type Params = {
   planId: string;
 };
 
-function Plan() {
+function PlanPage() {
   const params = useParams<Params>();
 
   if (!params.planId) {
@@ -37,4 +37,4 @@ function Plan() {
   );
 }
 
-export default Plan;
+export default PlanPage;

@@ -5,7 +5,7 @@ import { addPlan } from "../infra/PlanAPI";
 
 type Props = {};
 
-function Home(props: Props) {
+function HomePage(props: Props) {
   const [showAddForm, setShowAddForm] = useState(false);
   const [addPlanTitle, setAddPlanTitle] = useState("");
   const { plans, dispatch } = useContext(AppStateContext);
@@ -51,4 +51,4 @@ function Home(props: Props) {
   );
 }
 
-export default Home;
+export default HomePage;

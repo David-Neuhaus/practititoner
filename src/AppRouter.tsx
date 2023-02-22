@@ -19,7 +19,7 @@ function AppRouter() {
           <Route path="/" element={<App />} errorElement={<Error />}>
             <Route index element={<HomePage />} />
             <Route path="plans/:planId" element={<PlanPage />} />
-            <Route path="plans/:planId/play" element={<PracticePage />} />
+            <Route path="practice" element={<PracticePage />} />
           </Route>
         )
       )}

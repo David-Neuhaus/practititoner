@@ -26,7 +26,7 @@ const reorder = (
   return result;
 };
 
-function PracticePlan(props: Props) {
+function Plan(props: Props) {
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingPlan, setEditingPlan] = useState(false);
   const planNameEl = useRef<HTMLHeadingElement>(null);
@@ -247,4 +247,4 @@ function PracticePlan(props: Props) {
   );
 }
 
-export default PracticePlan;
+export default Plan;

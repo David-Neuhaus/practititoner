@@ -2,7 +2,7 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useParams } from "react-router-dom";
 
-import PracticePlan from "../components/Plan";
+import Plan from "../components/Plan";
 
 import styles from "./PlanPage.module.css";
 
@@ -24,7 +24,7 @@ function PlanPage() {
 
   return (
     <div>
-      <PracticePlan planId={params.planId} />
+      <Plan planId={params.planId} />
       <div className={styles.startLinkContainer}>
         <Link to="./play" className={styles.startLink}>
           <div>

@@ -22,6 +22,13 @@ type PayloadType = {
   setExercises: {
     exercises: ExerciseType[];
   };
+  startPracticeSession: {
+    currentPlanId?: string;
+    currentExercsieId?: string;
+  };
+  stopPracticeSession: {};
+  pausePracticeSession: {};
+  resumePracticeSession: {};
 };
 
 export type ActionType = {
@@ -80,6 +87,44 @@ export const Reducers: ReducerType = {
       plans: prev.plans.map((plan) =>
         plan.id === args.planId ? { ...plan, name: args.name } : plan
       ),
+    };
+  },
+  startPracticeSession: (prev, args) => {
+    return {
+      ...prev,
+      practiceSession: {
+        start: Date.now(),
+        paused: false,
+        ...args,
+      },
+    };
+  },
+  stopPracticeSession: (prev) => {
+    return {
+      ...prev,
+      practiceSession: undefined,
+    };
+  },
+  pausePracticeSession: (prev) => {
+    return {
+      ...prev,
+      practiceSession: prev.practiceSession
+        ? {
+            ...prev.practiceSession,
+            paused: true,
+          }
+        : undefined,
+    };
+  },
+  resumePracticeSession: (prev) => {
+    return {
+      ...prev,
+      practiceSession: prev.practiceSession
+        ? {
+            ...prev.practiceSession,
+            paused: false,
+          }
+        : undefined,
     };
   },
 };

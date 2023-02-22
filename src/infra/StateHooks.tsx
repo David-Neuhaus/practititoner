@@ -11,6 +11,7 @@ export function usePlanById(id: string) {
   return plan;
 }
 
+// TODO faster exercise search function
 function recursiveExerciseSearch(
   exercises: ExerciseType[],
   id: string

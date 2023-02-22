@@ -8,6 +8,7 @@ import React, { createContext, useReducer } from "react";
 import { ExerciseType, PlanType } from "./PlanAPI";
 import { ActionType, Reducers } from "./Reducer";
 import { useFetch } from "./Network";
+import { PracticeSessionType } from "./PracticeSessionAPI";
 
 // Test Data
 export const plansTestData: PlanType[] = [
@@ -107,6 +108,7 @@ export const exercisesTestData: ExerciseType[] = [
 export type AppState = {
   plans: PlanType[];
   exercises: ExerciseType[];
+  practiceSession?: PracticeSessionType;
 };
 
 export const AppStateContext = createContext<

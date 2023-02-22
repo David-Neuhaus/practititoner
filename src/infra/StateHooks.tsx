@@ -35,3 +35,8 @@ export function useExerciseById(id: string) {
   if (found) return found;
   else return null;
 }
+
+export function usePracticeSession() {
+  const state = useContext(AppStateContext);
+  return state.practiceSession;
+}

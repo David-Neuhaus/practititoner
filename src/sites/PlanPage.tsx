@@ -26,10 +26,10 @@ function PlanPage() {
     <div>
       <Plan planId={params.planId} />
       <div className={styles.startLinkContainer}>
-        <Link to="./play" className={styles.startLink}>
+        <Link to="/practice" className={styles.startLink}>
           <div>
             <FontAwesomeIcon icon={solid("play")} />
-            Start
+            Practice
           </div>
         </Link>
       </div>

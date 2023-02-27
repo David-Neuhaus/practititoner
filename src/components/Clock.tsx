@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from "react";
 
+import styles from "./Clock.module.css";
+
 type Props = {
-  start?: number; // in seconds
-  callbackOnPause: (time: number, resume: () => void) => any;
+  start?: number; // as Date number
+  callbackOnPause?: (time: number, resume: () => void) => any;
+  className?: string;
 };
 
-function secondsToClockString(seconds: number) {
-  const s = seconds % 60;
-  const m = ((seconds - s) / 60) % 60;
-  const h = (((seconds - s) / 60 - m) / 60) % 60;
-  return `${h ? `${h.toString()}:` : ""}${m.toString().padStart(2, "0")}:${s
-    .toString()
-    .padStart(2, "0")}`;
-}
-
 function Clock(props: Props) {
-  const [time, setTime] = useState(props.start ?? 0);
+  const [time, setTime] = useState(props.start ?? Date.now());
 
   function tickClock() {
     setTime((oldTime) => oldTime + 1);
@@ -26,10 +20,16 @@ function Clock(props: Props) {
 
     return function cleanup() {
       clearInterval(timerId);
-      console.log("hi");
     };
   }, []);
-  return <div>{secondsToClockString(time)}</div>;
+  return (
+    <div className={`${styles.Clock} ${props.className}`}>
+      {new Date(Date.now() - time)
+        .toLocaleTimeString()
+        .replace(/(^1:)/g, "") // TODO this should not happen?
+        .replace(/( AM)|( PM)/g, "")}
+    </div>
+  );
 }
 
 export default Clock;

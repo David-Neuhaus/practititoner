@@ -1,6 +1,4 @@
-import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
-import { generateKey } from "crypto";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import "./App.css";
 
@@ -23,7 +21,7 @@ const darkTheme: ColorSchemeType = {
   "--approve-color-hover": "lightgreen",
   "--alert-color": "coral",
   "--alert-color-hover": "lightpink",
-  "--secondary-color": "rgb(0, 128, 255)",
+  "--secondary-color": "aquamarine",
   "--gray": "gray",
   "--light-gray": "lightgray",
   "--middle-gray": "#676767",
@@ -35,7 +33,7 @@ const lightTheme: ColorSchemeType = {
   "--approve-color-hover": "lightgreen",
   "--alert-color": "coral",
   "--alert-color-hover": "lightpink",
-  "--secondary-color": "rgb(0, 128, 255)",
+  "--secondary-color": "aquamarine",
   "--gray": "gray",
   "--light-gray": "lightgray",
   "--middle-gray": "#676767",

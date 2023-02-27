@@ -2,7 +2,7 @@ import { useContext, useMemo } from "react";
 import { AppStateContext } from "./AppStateContext";
 import { ExerciseType } from "./PlanAPI";
 
-export function usePlanById(id: string) {
+export function usePlanById(id?: string) {
   const state = useContext(AppStateContext);
   const plan = useMemo(
     () => state.plans.find((plan) => plan.id === id),
@@ -14,7 +14,7 @@ export function usePlanById(id: string) {
 // TODO faster exercise search function
 function recursiveExerciseSearch(
   exercises: ExerciseType[],
-  id: string
+  id?: string
 ): ExerciseType | false {
   for (const ex of exercises) {
     if (ex.id === id) return ex;
@@ -26,7 +26,7 @@ function recursiveExerciseSearch(
   return false;
 }
 
-export function useExerciseById(id: string) {
+export function useExerciseById(id?: string) {
   const state = useContext(AppStateContext);
   const found = useMemo(
     () => recursiveExerciseSearch(state.exercises, id),

@@ -1,7 +1,9 @@
 import React, { FormEvent, useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import PracticePlanList from "../components/PlanList";
 import { AppStateContext } from "../infra/AppStateContext";
 import { addPlan } from "../infra/PlanAPI";
+import { startPracticeSession } from "../infra/PracticeSessionAPI";
 
 type Props = {};
 
@@ -47,6 +49,19 @@ function HomePage(props: Props) {
           <button type="submit">Add</button>
         </form>
       )}
+      <Link
+        to={"/practice"}
+        onClick={() => {
+          startPracticeSession().then(() =>
+            dispatch({
+              type: "startPracticeSession",
+              payload: {},
+            })
+          );
+        }}
+      >
+        Start Session
+      </Link>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { AppState } from "./AppStateContext";
 import { ExerciseType, PlanItemType, PlanType } from "./PlanAPI";
+import { PracticeSessionType } from "./PracticeSessionAPI";
 
 type PayloadType = {
   setPlanItems: {
@@ -29,6 +30,7 @@ type PayloadType = {
   stopPracticeSession: {};
   pausePracticeSession: {};
   resumePracticeSession: {};
+  setPracticeSession: PracticeSessionType;
 };
 
 export type ActionType = {
@@ -125,6 +127,14 @@ export const Reducers: ReducerType = {
             paused: false,
           }
         : undefined,
+    };
+  },
+  setPracticeSession: (prev, args) => {
+    return {
+      ...prev,
+      practiceSession: {
+        ...args,
+      },
     };
   },
 };

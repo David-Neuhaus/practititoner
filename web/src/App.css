@@ -10,8 +10,8 @@
 button {
   padding: 0.2em 0.5em;
   border-radius: 3px;
-  border: 1px solid gray;
-  color: black;
+  border: 1px solid var(--gray);
+  color: var(--text-color);
   background: none;
   cursor: pointer;
 }
@@ -19,10 +19,10 @@ button {
 @media (hover: hover) {
   /* when hover is supported */
   button:hover {
-    background: lightgray;
+    background: var(--light-gray);
   }
 }
 
 button:active {
-  background: lightgray;
+  background: var(--light-gray);
 }

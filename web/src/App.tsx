@@ -12,6 +12,8 @@ type ColorSchemeType = {
   "--gray": string;
   "--light-gray": string;
   "--middle-gray": string;
+  "--border-color": string;
+  "--text-color": string;
 };
 
 const darkTheme: ColorSchemeType = {
@@ -25,6 +27,8 @@ const darkTheme: ColorSchemeType = {
   "--gray": "gray",
   "--light-gray": "lightgray",
   "--middle-gray": "#676767",
+  "--border-color": "black",
+  "--text-color": "black",
 };
 
 const lightTheme: ColorSchemeType = {
@@ -37,6 +41,8 @@ const lightTheme: ColorSchemeType = {
   "--gray": "gray",
   "--light-gray": "lightgray",
   "--middle-gray": "#676767",
+  "--border-color": "black",
+  "--text-color": "black",
 };
 
 function activateScheme(theme: "DARK" | "LIGHT") {

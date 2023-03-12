@@ -5,7 +5,7 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { AppStateContext } from "../infra/AppStateContext";
 import { PlanItemType, setPlanItems, setPlanName } from "../infra/PlanAPI";
 import { usePlanById } from "../infra/StateHooks";
-import AddExerciseList from "./AddExerciseList";
+import ExerciseList from "./ExerciseList";
 
 import styles from "./Plan.module.css";
 import PracticePlanItem from "./PlanItem";
@@ -98,6 +98,7 @@ function Plan(props: Props) {
   }
 
   function addItemToPlan(item: PlanItemType) {
+    // TODO Currently allows for adding items multiple times. This is a problem for the keys of th elist elements. Consider adding a planItemId.
     if (plan)
       setPlanItems(plan.id, plan.items.concat(item)).then((response) => {
         if (response.success) {
@@ -237,10 +238,7 @@ function Plan(props: Props) {
           </Droppable>
         </DragDropContext>
         {showAddForm && (
-          <AddExerciseList
-            inPlan={plan.items}
-            addToPracticePlan={addItemToPlan}
-          />
+          <ExerciseList inPlan={plan.items} addToPracticePlan={addItemToPlan} />
         )}
       </div>
     </div>

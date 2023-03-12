@@ -1,22 +1,14 @@
-export type ExerciseType = {
-  id: string;
-  name: string;
-  parentId?: string;
-  img?: string;
-  subItems?: ExerciseType[];
-};
-
-export type PlanItemType = {
+export interface PlanItemType {
   exerciseId: string;
   amount?: number;
   duration?: number;
-};
+}
 
-export type PlanType = {
+export interface PlanType {
   id: string;
   name: string;
   items: PlanItemType[];
-};
+}
 
 export async function fetchPlanById(planId: string): Promise<PlanType | null> {
   // TODO Call API
@@ -57,14 +49,4 @@ export async function setPlanName(
   // TODO call API
 
   return { success: true };
-}
-
-export async function fetchExercises(): Promise<ExerciseType[]> {
-  return [];
-}
-
-export async function fetchExerciseById(
-  exerciseId: string
-): Promise<ExerciseType | null> {
-  return null;
 }

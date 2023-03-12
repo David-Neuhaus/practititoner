@@ -62,6 +62,7 @@ function HomePage(props: Props) {
       >
         Start Session
       </Link>
+      <Link to={"/library"}>View library</Link>
     </div>
   );
 }

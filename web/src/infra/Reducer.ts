@@ -1,8 +1,9 @@
 import { AppState } from "./AppStateContext";
-import { ExerciseType, PlanItemType, PlanType } from "./PlanAPI";
+import { ExerciseType } from "./LibraryAPI";
+import { PlanItemType, PlanType } from "./PlanAPI";
 import { PracticeSessionType } from "./PracticeSessionAPI";
 
-type PayloadType = {
+interface PayloadType {
   setPlanItems: {
     planId: string;
     items: PlanItemType[];
@@ -23,6 +24,9 @@ type PayloadType = {
   setExercises: {
     exercises: ExerciseType[];
   };
+  addExercise: {
+    exercise: ExerciseType;
+  };
   startPracticeSession: {
     currentPlanId?: string;
     currentExercsieId?: string;
@@ -31,7 +35,7 @@ type PayloadType = {
   pausePracticeSession: {};
   resumePracticeSession: {};
   setPracticeSession: PracticeSessionType;
-};
+}
 
 export type ActionType = {
   [T in keyof PayloadType]: {
@@ -81,6 +85,41 @@ export const Reducers: ReducerType = {
     return {
       ...prev,
       exercises: [...args.exercises],
+    };
+  },
+  addExercise: (prev, args) => {
+    function addToParentRecursive(
+      exercises: ExerciseType[],
+      newExercise: ExerciseType
+    ) {
+      console.log("add");
+      const output = [];
+      for (const ex of exercises) {
+        if (ex.id === newExercise.parentId) {
+          console.log(ex.name);
+          ex.subItems = ex.subItems
+            ? [...ex.subItems, newExercise]
+            : [newExercise];
+          output.push(ex);
+          continue;
+        }
+
+        if (ex.subItems) {
+          ex.subItems = addToParentRecursive(ex.subItems, newExercise);
+        }
+
+        output.push(ex);
+      }
+
+      return output;
+    }
+
+    const newExercises = args.exercise.parentId
+      ? addToParentRecursive([...prev.exercises], args.exercise)
+      : [...prev.exercises, args.exercise];
+    return {
+      ...prev,
+      exercises: newExercises,
     };
   },
   setPlanName: (prev, args) => {

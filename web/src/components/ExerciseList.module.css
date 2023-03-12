@@ -53,6 +53,9 @@
     cursor: pointer;
     background: none;
   }
+  .noPointer:hover {
+    cursor: auto;
+  }
 }
 
 .subItems {

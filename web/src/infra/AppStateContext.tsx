@@ -5,10 +5,11 @@
  */
 
 import React, { createContext, useReducer } from "react";
-import { ExerciseType, PlanType } from "./PlanAPI";
+import { PlanType } from "./PlanAPI";
 import { ActionType, Reducers } from "./Reducer";
 import { useFetch } from "./Network";
 import { PracticeSessionType } from "./PracticeSessionAPI";
+import { ExerciseType } from "./LibraryAPI";
 
 // Test Data
 export const plansTestData: PlanType[] = [

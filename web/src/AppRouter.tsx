@@ -10,6 +10,7 @@ import HomePage from "./sites/HomePage";
 import PlanPage from "./sites/PlanPage";
 import PracticePage from "./sites/PracticePage";
 import Error from "./components/Error";
+import LibraryPage from "./sites/LibraryPage";
 
 function AppRouter() {
   return (
@@ -20,6 +21,7 @@ function AppRouter() {
             <Route index element={<HomePage />} />
             <Route path="plans/:planId" element={<PlanPage />} />
             <Route path="practice" element={<PracticePage />} />
+            <Route path="library" element={<LibraryPage />} />
           </Route>
         )
       )}

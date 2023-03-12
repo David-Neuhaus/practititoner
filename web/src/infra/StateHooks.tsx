@@ -1,6 +1,6 @@
 import { useContext, useMemo } from "react";
 import { AppStateContext } from "./AppStateContext";
-import { ExerciseType } from "./PlanAPI";
+import { ExerciseType } from "./LibraryAPI";
 
 export function usePlanById(id?: string) {
   const state = useContext(AppStateContext);
@@ -39,4 +39,8 @@ export function useExerciseById(id?: string) {
 export function usePracticeSession() {
   const state = useContext(AppStateContext);
   return state.practiceSession;
+}
+
+export function useAppState() {
+  return useContext(AppStateContext);
 }

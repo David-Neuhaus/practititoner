@@ -49,8 +49,9 @@ function HomePage(props: Props) {
           <button type="submit">Add</button>
         </form>
       )}
+      <br></br>
       <Link
-        to={"/practice"}
+        to="/practice"
         onClick={() => {
           startPracticeSession().then(() =>
             dispatch({
@@ -62,7 +63,10 @@ function HomePage(props: Props) {
       >
         Start Session
       </Link>
-      <Link to={"/library"}>View library</Link>
+      <br></br>
+      <Link to="/library">View library</Link>
+      <br></br>
+      <Link to="/statistics">View Statistics</Link>
     </div>
   );
 }

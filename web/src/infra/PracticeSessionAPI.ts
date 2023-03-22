@@ -8,6 +8,7 @@ export type PracticeLogItemType = {
   start: number;
   end: number;
   exerciseId: string;
+  planId?: string;
   reflection: number;
 };
 
@@ -19,7 +20,7 @@ export type PracticeSessionType = {
   currentExerciseId?: string;
   startedCurrentExercise?: number;
   currentIndexInPlan?: number;
-  practiceLog?: PracticeLogItemType;
+  practiceLog: PracticeLogItemType[];
 };
 
 export async function startPracticeSession(): Promise<{ succcess: boolean }> {

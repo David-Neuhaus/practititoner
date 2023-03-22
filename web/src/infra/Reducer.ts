@@ -34,7 +34,9 @@ interface PayloadType {
   stopPracticeSession: {};
   pausePracticeSession: {};
   resumePracticeSession: {};
-  setPracticeSession: PracticeSessionType;
+  setPracticeSession: {
+    practiceSession: PracticeSessionType;
+  };
 }
 
 export type ActionType = {
@@ -136,6 +138,7 @@ export const Reducers: ReducerType = {
       practiceSession: {
         start: Date.now(),
         paused: false,
+        practiceLog: [],
         ...args,
       },
     };
@@ -172,7 +175,7 @@ export const Reducers: ReducerType = {
     return {
       ...prev,
       practiceSession: {
-        ...args,
+        ...args.practiceSession,
       },
     };
   },

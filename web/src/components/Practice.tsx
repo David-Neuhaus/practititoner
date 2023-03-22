@@ -99,12 +99,14 @@ function Practice(props: Props) {
                 dispatch({
                   type: "setPracticeSession",
                   payload: {
-                    ...session,
-                    currentPlanId: "1",
-                    startedCurrentPlan: Date.now(),
-                    currentIndexInPlan: 0,
-                    currentExerciseId: "20",
-                    startedCurrentExercise: Date.now(),
+                    practiceSession: {
+                      ...session,
+                      currentPlanId: "1",
+                      startedCurrentPlan: Date.now(),
+                      currentIndexInPlan: 0,
+                      currentExerciseId: "20",
+                      startedCurrentExercise: Date.now(),
+                    },
                   },
                 })
               );

@@ -1,11 +1,10 @@
-import { FormEvent, useContext, useMemo, useRef, useState } from "react";
+import { FormEvent, useMemo, useRef, useState } from "react";
 import { PlanItemType } from "../infra/PlanAPI";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 import styles from "./ExerciseList.module.css";
 import ExerciseRecursiveListItem from "./ExerciseRecursiveListItem";
-import { AppStateContext } from "../infra/AppStateContext";
 import { addExercise, ExerciseType } from "../infra/LibraryAPI";
 import { useAppState } from "../infra/StateHooks";
 
@@ -21,17 +20,17 @@ function ExerciseList(props: Props) {
   const nameRef = useRef<HTMLInputElement>(null);
   const parentRef = useRef<HTMLSelectElement>(null);
 
-  const exerciseFlatList = useMemo<ExerciseType[]>(() => {
-    function recursive(items?: ExerciseType[]): ExerciseType[] {
+  const exerciseFlatList = useMemo<(ExerciseType & { level: number })[]>(() => {
+    function recursive(level: number, items?: ExerciseType[]) {
       if (items === undefined) return [];
-      const output = [];
+      let output: (ExerciseType & { level: number })[] = [] as any;
       for (const ex of items) {
-        output.push(ex);
-        output.concat(recursive(ex.subItems));
+        output.push({ ...ex, level });
+        output = output.concat(recursive(level + 1, ex.subItems));
       }
       return output;
     }
-    return recursive(exercises);
+    return recursive(1, exercises);
   }, [exercises]);
 
   function handleAddForm(e: FormEvent<HTMLFormElement>) {
@@ -70,22 +69,41 @@ function ExerciseList(props: Props) {
         </button>
       )}
       {showAddForm && (
+        // TODO should decide between category or movement/subexercise with a radio button
         <form onSubmit={handleAddForm}>
           <label htmlFor="exerciseNameInput"></label>
           <input id="exerciseNameInput" ref={nameRef} type="text"></input>
-          <label htmlFor="subExCheckbox">Movement or subexercise</label>
-          <input
-            type="checkbox"
-            id="subExCheckbox"
-            onChange={() => setAddToSub(true)}
-          ></input>
-          {addToSub && (
-            <select id="exerciseParent" ref={parentRef}>
-              {exerciseFlatList.map((ex) => (
-                <option value={ex.id}>{ex.name}</option>
-              ))}
-            </select>
-          )}
+          <fieldset>
+            <input
+              type="radio"
+              id="piece"
+              name="parentType"
+              checked={!addToSub}
+              onChange={() => setAddToSub(false)}
+            ></input>
+            <label htmlFor="piece">Piece or exercise</label>
+            <input
+              type="radio"
+              id="subExRadio"
+              name="parentType"
+              onChange={() => setAddToSub(true)}
+            ></input>
+            <label htmlFor="subExRadio">Movement or subexercise</label>
+          </fieldset>
+
+          <select id="exerciseParent" ref={parentRef}>
+            {addToSub
+              ? exerciseFlatList.map((ex) => (
+                  <option value={ex.id} key={ex.id}>
+                    {`${new Array(ex.level).join("> ")}${ex.name}`}
+                  </option>
+                ))
+              : exercises.map((ex) => (
+                  <option value={ex.id} key={ex.id}>
+                    {ex.name}
+                  </option>
+                ))}
+          </select>
           <button type="submit">Add</button>
         </form>
       )}

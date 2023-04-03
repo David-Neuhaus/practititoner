@@ -2,7 +2,7 @@ import { PracticeLogItemType } from "./PracticeSessionAPI";
 
 export type StatisticsItemType = {
   id: string; // TODO needed?
-  sessions: SavedSessionType[];
+  sessionIds: string[];
   averageRating: number;
   totalPracticeTime: number;
 };
@@ -16,8 +16,11 @@ export type SavedSessionType = {
 };
 
 export type StatisticsType = {
-  byPlanOrExercise: {
+  byPlanOrExerciseId: {
     [key: string]: StatisticsItemType;
+  };
+  sessionIdsByDate: {
+    [key: string]: string[];
   };
   practiceSessions: SavedSessionType[];
 };

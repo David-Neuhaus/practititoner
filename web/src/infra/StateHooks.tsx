@@ -36,9 +36,24 @@ export function useExerciseById(id?: string) {
   else return null;
 }
 
+export function useStatistics() {
+  const state = useContext(AppStateContext);
+  return state.statistics;
+}
+
 export function usePracticeSession() {
   const state = useContext(AppStateContext);
   return state.practiceSession;
+}
+
+export function usePlans() {
+  const state = useContext(AppStateContext);
+  return state.plans;
+}
+
+export function useExercises() {
+  const state = useContext(AppStateContext);
+  return state.exercises;
 }
 
 export function useAppState() {

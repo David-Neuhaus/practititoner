@@ -108,8 +108,9 @@ export const exercisesTestData: ExerciseType[] = [
 ];
 
 export const statisticsTestData: StatisticsType = {
-  byPlanOrExercise: {},
   practiceSessions: [],
+  byPlanOrExerciseId: {},
+  sessionIdsByDate: {},
 };
 
 export type AppState = {

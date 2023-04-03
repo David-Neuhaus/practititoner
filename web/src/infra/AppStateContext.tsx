@@ -10,6 +10,7 @@ import { ActionType, Reducers } from "./Reducer";
 import { useFetch } from "./Network";
 import { PracticeSessionType } from "./PracticeSessionAPI";
 import { ExerciseType } from "./LibraryAPI";
+import { StatisticsType } from "./StatisticsAPI";
 
 // Test Data
 export const plansTestData: PlanType[] = [
@@ -106,9 +107,15 @@ export const exercisesTestData: ExerciseType[] = [
   },
 ];
 
+export const statisticsTestData: StatisticsType = {
+  byPlanOrExercise: {},
+  practiceSessions: [],
+};
+
 export type AppState = {
   plans: PlanType[];
   exercises: ExerciseType[];
+  statistics: StatisticsType;
   practiceSession?: PracticeSessionType;
 };
 
@@ -117,6 +124,7 @@ export const AppStateContext = createContext<
 >({
   plans: plansTestData,
   exercises: exercisesTestData,
+  statistics: statisticsTestData,
   dispatch: (v: ActionType) => {},
 });
 
@@ -132,6 +140,7 @@ function AppStateContextProvider(props: Props) {
     {
       plans: useFetch(null, null) ?? plansTestData, // TODO fetch plans
       exercises: useFetch(null, null) ?? exercisesTestData, // TODO fetch exercises
+      statistics: useFetch(null, null) ?? statisticsTestData, // TODO fetch statistics
     }
   );
   return (
